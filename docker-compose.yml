@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres-db:
+    container_name: postgresContainer2
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass123
+
+
+  go-app:
+    container_name: marketplace-app
+    image: marketplace:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+
+
